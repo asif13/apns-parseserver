@@ -4,7 +4,7 @@
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
-
+var adapter=require('./parse-server-push-adapter/src').APNS_token;
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
 if (!databaseUri) {
