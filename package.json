@@ -12,7 +12,11 @@
     "express": "~4.11.x",
     "kerberos": "~0.0.x",
     "parse": "~1.8.0",
-    "parse-server": "*"
+    "parse-dashboard": "^1.0.22",
+    "parse-server": "*",
+     "apn": "^1.7.8",
+    "node-gcm": "^0.14.0",
+    "npmlog": "^2.0.3"
   },
   "scripts": {
     "start": "node index.js"
