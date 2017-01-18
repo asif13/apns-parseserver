@@ -8,12 +8,16 @@ var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 var ParseDashboard = require('parse-dashboard');
 var adapter = require('parse-token-based-push-ios').ParsePushAdapter;
 
-var configuration = {ios : {
-      pfx: "apnsios_dev.p12",
-      passphrase: '',
-      bundleId: "com.nsi.apnsios",
+var configuration = {ios: {
+      // pfx: "apnsios_dev.p12",
+      // passphrase: '',
+      // bundleId: "com.nsi.apnsios",
       production: false,
+      tokenPath: 'apns.p8', 
+      tokenKey: 'TQR7U48P84', 
+      teamId: 'BML7Y29427' 
 }};
+
 var pushAdapter = new adapter(configuration);
 if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
@@ -27,23 +31,12 @@ var api = new ParseServer({
   serverURL: process.env.SERVER_URL || 'http://localhost:1337/parse',  // Don't forget to change to https if needed
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
-  }   ,push: {
+  },
+  push: {
     adapter:pushAdapter
-    // ios : {
-    //   pfx: "apnsios_dev.p12",
-    //   passphrase: '',
-    //   bundleId: "com.nsi.apnsios",
-    //   production: false,
-// }
   }
 });
 
-// ios: [{
-//       pfx: "/path",
-//       passphrase: '',
-//       bundleId: "com.nsi.TESTApns",
-//       production: false,
-//     }]
 var app = express();
 var dashboard = new ParseDashboard({
   "apps": [
